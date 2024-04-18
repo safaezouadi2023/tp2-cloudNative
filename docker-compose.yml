@@ -1,0 +1,25 @@
+version: '3'
+services:
+  mongodb:
+    build:
+      context: .
+      dockerfile: Dockerfile.mongodb
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodata:/data/db
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    container_name: api
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongodb
+
+volumes:
+  mongodata:
+    driver: local

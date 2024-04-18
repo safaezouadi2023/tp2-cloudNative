@@ -1,0 +1,15 @@
+# Utilisez une image de base adaptée à votre API (par exemple, node.js, python, etc.)
+FROM node:latest
+
+# Définissez le répertoire de travail dans le conteneur
+WORKDIR /app
+
+# Copiez les fichiers nécessaires de votre application dans le conteneur
+COPY package.json .
+COPY server.js .
+
+# Installez les dépendances de votre application
+RUN npm install
+
+# Commande par défaut pour démarrer votre API
+CMD ["node", "server.js"]
